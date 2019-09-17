@@ -3,5 +3,8 @@ from . import views
 urlpatterns = [
     
     path('', views.home),
+    path('download', views.youtubes),
+
+    path('getlink', views.getlink),
     
 ]
