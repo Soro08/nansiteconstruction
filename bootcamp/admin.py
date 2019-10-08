@@ -13,12 +13,6 @@ class LieuAdmin(admin.ModelAdmin):
     list_filter = (
         'status',
         'date_add',
-        'date_upd',
-        'id',
-        'name',
-        'status',
-        'date_add',
-        'date_upd',
     )
     search_fields = ('name',)
 
@@ -29,13 +23,7 @@ class SpecialiteAdmin(admin.ModelAdmin):
     list_filter = (
         'status',
         'date_add',
-        'date_upd',
-        'id',
-        'name',
-        'status',
-        'date_add',
-        'date_upd',
-    )
+        )
     search_fields = ('name',)
 
 
@@ -50,18 +38,10 @@ class EncadreurAdmin(admin.ModelAdmin):
         'date_upd',
     )
     list_filter = (
-        'user',
         'specialite',
         'status',
         'date_add',
-        'date_upd',
-        'id',
-        'user',
-        'specialite',
-        'status',
-        'date_add',
-        'date_upd',
-    )
+        )
 
 
 class EtudiantAdmin(admin.ModelAdmin):
@@ -77,21 +57,11 @@ class EtudiantAdmin(admin.ModelAdmin):
         'date_upd',
     )
     list_filter = (
-        'user',
         'specialite',
         'lieu',
         'status',
         'date_add',
-        'date_upd',
-        'id',
-        'user',
-        'contact',
-        'specialite',
-        'lieu',
-        'status',
-        'date_add',
-        'date_upd',
-    )
+        )
 
 
 def _register(model, admin_class):
