@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Include Bootstrap -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!--Own Style-->
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>Exercice1</title>
+</head>
+<body>
+    <div class="container">
+        <div id="mainCard">
+                <div class="form-contact">
+                    <div class="contact-form-title">
+                        <h3>NaN bootcamp</h3>
+                        <img src="/static/images/bootcamp/logo-nan 2.png" alt="" class="img-fluid">
+                        <p class="pt-3 title-desc">HELLO , Pour cette fin d année NAN ouvre ses portes à toutes personnes passionné d’informatique mais ayant peu connaissances pratiques , NAN vous propose des modules de spécialisation dans des domaine bien précis.Une semaine de formations intenses dans ses locaux , afin d’acquérir des compétences nécessaire Pour une insertion professionnelle .</p>
+                    </div>
+                    <div class="main-form">
+                        <p>*Ces champs sont à remplire obligatoirement</p>
+                        <form action="{% url 'bootcamp_etudiant_save' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" placeholder="Votre nom ici" id="firstname" class="w-100">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" placeholder="Votre prenom ici" id="lastname" class="w-100">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="contact" placeholder="Numero de telephone (Ex: +225 01010101)" id="number" class="w-100">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" placeholder="Email" id="email" class="w-100">
+                                    </div>
+                                    <div class="form-group">
+                                        <h5 style="color: white;">Lieu de residence</h5>
+                                        <select class="w-100 black-text" name="lieu" >
+                                            {% for lieu in lieux %}
+                                            <option value="{{lieu.pk}}">{{lieu.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <h4 style="color:#8489f0;">Specialités</h4>
+                                    {% for spe in specialite %}
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <input type="radio" id="{{spe.name|slugify}}" value="{{ spe.pk }}" name="specialite">
+                                            </div>
+                                        </div>
+                                        <label for="{{spe.name|slugify}}">{{spe.name|upper}}</label>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn-submit">ENVOYER</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <p class="final-message pt-3">Not A Number - &copy; DevFront</p>
+    </div>
+    <!--Bootstrap JS-->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <!--Jquerry-->
+    <script src="/static/js/jquery.min.js"></script>
+</body>
+</html>

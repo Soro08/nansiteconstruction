@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Lieu(models.Model):
     """Model definition for Lieu."""
@@ -55,12 +57,19 @@ class Etudiant(models.Model):
     """Model definition for Etudiant."""
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='etudiant')
     contact = models.CharField(max_length=30,null=True)
-    specialite = models.ForeignKey(Specialite, on_delete=models.CASCADE,related_name='etudiant_specialité')
+    specialite = models.ForeignKey(Specialite, on_delete=models.CASCADE,related_name='etudiant_specialiteS',null=True)
     lieu = models.ForeignKey(Lieu,on_delete=models.SET_NULL,related_name='lieu_etudiant',null=True)
     status = models.BooleanField(default=False)
     date_add = models.DateTimeField(auto_now_add=True)
     date_upd = models.DateTimeField(auto_now=True)
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Etudiant.objects.create(user=instance)
 
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, created, **kwargs):
+        instance.etudiant.save()
     class Meta:
         """Meta definition for Etudiant."""
 
