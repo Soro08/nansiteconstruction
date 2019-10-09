@@ -11,7 +11,7 @@
 body{
     min-height: 100vh;
     font-family: 'Open Sans';
-    background: linear-gradient(rgba(255, 255, 255, 0.13),rgba(255, 255, 255, 0.281)), url(/static/images/bootcamp/img1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(255, 255, 255, 0.13),rgba(255, 255, 255, 0.281)), url(/static/images/bootcamp/img1.jpg) center no-repeat;
     background-size: cover;
     padding-top:40px;
 }
@@ -89,6 +89,8 @@ label{
     margin-bottom: 0;
 }
 
+
+
 select{
     color: white;
     background: transparent;
@@ -128,8 +130,8 @@ select{
     .main-form{
         padding: 10px 0;
     }
-    label{
-
+    #mainCard{
+        min-height: 100vh;
     }
 }
 

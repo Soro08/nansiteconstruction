@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <!--Own Style-->
     <link rel="stylesheet" href="/static/css/styles.css">
-    <title>Exercice1</title>
+    <link rel="stylesheet" href="/static/css/alert.css">
+    <title>NaN BootCamp</title>
 </head>
 <body>
     <div class="container">
@@ -18,11 +19,11 @@
                     <div class="contact-form-title">
                         <h3>NaN bootcamp</h3>
                         <img src="/static/images/bootcamp/logo-nan 2.png" alt="" class="img-fluid">
-                        <p class="pt-3 title-desc">HELLO , Pour cette fin d année NAN ouvre ses portes à toutes personnes passionné d’informatique mais ayant peu connaissances pratiques , NAN vous propose des modules de spécialisation dans des domaine bien précis.Une semaine de formations intenses dans ses locaux , afin d’acquérir des compétences nécessaire Pour une insertion professionnelle .</p>
+                        <p class="pt-3 title-desc">HELLO , Pour cette fin d année NAN ouvre ses portes à toutes personnes passionné d’informatique mais ayant peu de connaissances pratiques , NAN vous propose des modules de spécialisation dans des domaine bien précis.Une semaine de formations intenses dans ses locaux , afin d’acquérir des compétences nécessaire Pour une insertion professionnelle .</p>
                     </div>
                     <div class="main-form">
                         <p>*Ces champs sont à remplire obligatoirement</p>
-                        <form action="{% url 'bootcamp_etudiant_save' %}" method="POST">
+                        <form action="{% url 'bootcamp' %}" method="POST" class="pb-5">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -55,8 +56,11 @@
                                             <div class="col-2">
                                                 <input type="radio" id="{{spe.name|slugify}}" value="{{ spe.pk }}" name="specialite">
                                             </div>
+                                            <div class="col-10">
+                                                <label for="{{spe.name|slugify}}">{{spe.name|upper}}</label>
+                                            </div>
                                         </div>
-                                        <label for="{{spe.name|slugify}}">{{spe.name|upper}}</label>
+                                        
                                     </div>
                                     {% endfor %}
                                     
@@ -66,15 +70,48 @@
                                 <button type="submit" class="btn-submit">ENVOYER</button>
                             </div>
                         </form>
+                        {% if is_error %}
+                        <div class="alert alert-danger">
+                            <div class="alert-container">
+                            <div class="alert-icon">
+                                <i class="fa fa-info-circle"></i>
+                            </div>
+                            
+                            <b class="alert-info">Erreur:</b> Une erreur c'est produite lors de votre inscription merci de reprendre l'inscription...
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if is_succes %}
+                        <div class="alert alert-success">
+                            <div class="alert-container">
+                            <div class="alert-icon">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            
+                            <b class="alert-info">Succès:</b> Votre inscription c'est éffectué avec succès, nous vous
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
-                </div>
+            </div>
         </div>
         <p class="final-message pt-3">Not A Number - &copy; DevFront</p>
     </div>
     <!--Bootstrap JS-->
+    <script src="https://unpkg.com/imask"></script>
     <script src="/static/js/bootstrap.min.js"></script>
 
     <!--Jquerry-->
     <script src="/static/js/jquery.min.js"></script>
+
+
+    <script>
+        var element = document.getElementById('number');
+        var maskOptions = {
+        mask: '+{225} 00-00-00-00'
+        };
+        var mask = IMask(element, maskOptions);
+    </script>
 </body>
 </html>
