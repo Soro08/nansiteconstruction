@@ -11,6 +11,40 @@
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/alert.css">
     <title>NaN BootCamp</title>
+    <style>
+        label{
+            font-size: 11px;
+            margin-left:-14px;
+            
+        }
+
+        input[type=radio]{
+            font-size: 11px;
+        }
+
+        .none{
+            border-left:2px solid #8489f0;
+        }
+        .largeur{
+            width: 70%;
+        }
+        @media screen and (max-width:767px){
+            .none{
+                border-left: none;
+                padding:0;
+            }
+            .yes{
+            margin-top: -70px;
+            
+            }
+            .btn-submit{
+                margin-top:-50px !important;
+            }
+            .largeur{
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -22,52 +56,57 @@
                         <p class="pt-3 title-desc">HELLO , Pour cette fin d année NAN ouvre ses portes à toutes personnes passionné d’informatique mais ayant peu de connaissances pratiques , NAN vous propose des modules de spécialisation dans des domaine bien précis.Une semaine de formations intenses dans ses locaux , afin d’acquérir des compétences nécessaire Pour une insertion professionnelle .</p>
                     </div>
                     <div class="main-form">
-                        <p>*Ces champs sont à remplire obligatoirement</p>
+                        <p>*Ces champs sont à remplir obligatoirement</p>
                         <form action="{% url 'bootcamp' %}" method="POST" class="pb-5">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <input type="text" name="first_name" placeholder="Votre nom ici" id="firstname" class="w-100">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="last_name" placeholder="Votre prenom ici" id="lastname" class="w-100">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="contact" placeholder="Numero de telephone (Ex: +225 01010101)" id="number" class="w-100">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="email" placeholder="Email" id="email" class="w-100">
-                                    </div>
-                                    <div class="form-group">
-                                        <h5 style="color: white;">Lieu de residence</h5>
-                                        <select class="w-100 black-text" name="lieu" >
-                                            {% for lieu in lieux %}
-                                            <option value="{{lieu.pk}}">{{lieu.name}}</option>
-                                            {% endfor %}
-                                        </select>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style=" min-height: 376px;display: flex;justify-content: center;align-items: center;">
+                                    <div class="largeur">
+                                        <div class="form-group">
+                                            <input type="text" name="first_name" placeholder="Votre nom ici" id="firstname" class="w-100">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="last_name" placeholder="Votre prenom ici" id="lastname" class="w-100">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="contact" placeholder="Numero de telephone (Ex: +225 01010101)" id="number" class="w-100">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="email" placeholder="Email" id="email" class="w-100">
+                                        </div>
+                                        <div class="form-group">
+                                            <h5 style="color: white;">Lieu de residence</h5>
+                                            <select class="w-100 black-text" name="lieu" >
+                                                {% for lieu in lieux %}
+                                                <option value="{{lieu.pk}}">{{lieu.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                    <h4 style="color:#8489f0;">Specialités</h4>
-                                    {% for spe in specialite %}
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <input type="radio" id="{{spe.name|slugify}}" value="{{ spe.pk }}" name="specialite">
+
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 none" style="min-height: 376px;display: flex;justify-content: center;align-items: center;">
+                                    <div class="yes">
+                                        <h4 style="color:#8489f0;">Specialités</h4>
+                                        {% for spe in specialite %}
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-2 text-center" style="padding-right:0; height: 30px;">
+                                                    <input type="radio" id="{{spe.name|slugify}}" value="{{ spe.pk }}" name="specialite" style="font-size: 20px;">
+                                                </div>
+                                                <div class="col-10" >
+                                                    <label for="{{spe.name|slugify}}">{{spe.name|upper}}</label>
+                                                </div>
                                             </div>
-                                            <div class="col-10">
-                                                <label for="{{spe.name|slugify}}">{{spe.name|upper}}</label>
-                                            </div>
+                                        
                                         </div>
+                                        {% endfor %}
                                         
                                     </div>
-                                    {% endfor %}
-                                    
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn-submit">ENVOYER</button>
+                                <button type="submit" class="btn-submit mt-5">ENVOYER</button>
                             </div>
                         </form>
                         {% if is_error %}
