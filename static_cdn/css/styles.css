@@ -1,0 +1,135 @@
+/*GENERAL**********************/
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.black-text{
+    color:black;
+}
+body{
+    min-height: 100vh;
+    font-family: 'Open Sans';
+    background: linear-gradient(rgba(255, 255, 255, 0.13),rgba(255, 255, 255, 0.281)), url(/static/images/bootcamp/img1.jpg) center center no-repeat;
+    background-size: cover;
+    padding-top:40px;
+}
+
+/*MAINCARD**********************/
+
+
+#mainCard{
+    background: rgba(0, 0, 0, 0.671);
+    color: white;
+    padding: 30px;
+    min-height: 80vh;
+    box-shadow: 1px 25px 253px -59px rgba(0,0,0,0.76);
+}
+
+.form-contact{
+    margin: 0 auto;
+}
+
+.contact-form-title{
+    text-align: center;
+}
+
+.contact-form-title h3{
+    color: #8489f0;
+}
+
+h4{
+    color: #8489f0;
+}
+
+.contact-form-title p{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.contact-form-title img{
+    height: 70px;
+
+}
+
+.main-form{
+    padding:20px 60px 0 60px;
+}
+
+.main-form p{
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    font-style: italic;
+    padding-bottom: 7px;
+}
+
+input{
+    color: white;
+    background: transparent;
+    width: 80%;
+    padding: 10px 0 10px 7px;
+    border:none;
+    border-bottom:1px solid #ddd;
+    transition: 0.5s;
+}
+
+input::placeholder{
+    color: white;
+}
+
+input:focus,input:visited,select:focus,select:visited{
+    color: white;
+    outline: none;
+    border-bottom:1px solid#8489f0;
+    transition: 0.5s;
+}
+
+label{
+    margin-bottom: 0;
+}
+
+select{
+    color: white;
+    background: transparent;
+    width: 80%;
+    padding: 10px 0 10px 7px;
+    border:none;
+    border-bottom:1px solid #ddd;
+    transition: 0.5s;
+}
+
+.btn-submit{
+    padding:10px 40px;
+    border:none;
+    background: #8489f0;
+    color: white;
+    transition: 0.5s;
+}
+
+.btn-submit:hover{
+    background: #9062e6;
+    transition: 0.5s;
+}
+
+.final-message{
+    color: white;
+    text-align: center;
+}
+
+@media screen and (min-width:300px) and (max-width:815px){
+    body{
+        font-size: 10px;
+    }
+    .title-desc{
+        margin: 0px !important;
+        min-width: 100% !important;
+    }
+    .main-form{
+        padding: 10px 0;
+    }
+    label{
+
+    }
+}
+
